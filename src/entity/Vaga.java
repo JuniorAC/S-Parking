@@ -3,7 +3,7 @@ package entity;
 public class Vaga {
     private int numero ;
     private int piso;
-    private String tipovaga;
+    private String tipoVaga;
     private boolean disponibilidade;
 
     public int getNumero() {
@@ -22,12 +22,12 @@ public class Vaga {
         this.piso = piso;
     }
 
-    public String getTipovaga() {
-        return tipovaga;
+    public String getTipoVaga() {
+        return tipoVaga;
     }
 
-    public void setTipovaga(String tipovaga) {
-        this.tipovaga = tipovaga;
+    public void setTipoVaga(String tipovaga) {
+        this.tipoVaga = tipovaga;
     }
 
     public boolean isDisponibilidade() {
