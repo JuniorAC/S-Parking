@@ -1,6 +1,6 @@
 package control;
 
-import entity.Funcionario;
+
 import entity.Vaga;
 import javafx.beans.property.*;
 
