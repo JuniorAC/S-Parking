@@ -1,6 +1,6 @@
 package boundary;
 
-import control.FuncionariosControl;
+import control.LoginControl;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
@@ -10,11 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-//doideira
 
 public class Login extends Application {
 
-    private FuncionariosControl controlFuncionarios = new FuncionariosControl();
+    private LoginControl controlLogin = new LoginControl();
 
     Button btnEntrar = new Button("Entrar");
     Button btnCadastrar = new Button("Cadastrar");
@@ -41,10 +40,11 @@ public class Login extends Application {
 
         painel.getChildren().addAll(lblUsusario, lblSenha, txtUsuario, txtSenha, btnEntrar, btnCadastrar);
 
-        Bindings.bindBidirectional(txtUsuario.textProperty(), controlFuncionarios.usuarioProperty());
-        Bindings.bindBidirectional(txtSenha.textProperty(), controlFuncionarios.senhaProperty());
+        Bindings.bindBidirectional(txtUsuario.textProperty(), controlLogin.usuarioProperty());
+        Bindings.bindBidirectional(txtSenha.textProperty(), controlLogin.senhaProperty());
 
-        btnEntrar.setOnAction((e)->{controlFuncionarios.loginFuncionario(); });
+        btnEntrar.setOnAction((e)->{controlLogin.loginFuncionario(); });
+
         btnCadastrar.setOnAction((e)-> {
             //Necessario chamar tela de cadastro funcionario
         });
