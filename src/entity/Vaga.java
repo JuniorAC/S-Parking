@@ -4,7 +4,15 @@ public class Vaga {
     private int numero ;
     private int piso;
     private String tipoVaga;
-    private boolean disponibilidade;
+    private int disponibilidade;
+
+    public int getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(int disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
 
     public int getNumero() {
         return numero;
@@ -30,11 +38,5 @@ public class Vaga {
         this.tipoVaga = tipovaga;
     }
 
-    public boolean isDisponibilidade() {
-        return disponibilidade;
-    }
 
-    public void setDisponibilidade(boolean disponibilidade) {
-        this.disponibilidade = disponibilidade;
-    }
 }

@@ -52,7 +52,7 @@ public class GestaoEntrada implements TelaStrategy {
 
         RadioButton avarias = new RadioButton("Avarias");
 
-        Button btnSair = new Button("Sair");
+        Button btnSaida = new Button("Registrar Saida:");
         Button btnGravar = new Button("Gravar");
 
 
@@ -83,7 +83,7 @@ public class GestaoEntrada implements TelaStrategy {
 
         painel.setCenter(painelMid);
 
-        painelBot.add(btnSair,0,0);
+        painelBot.add(btnSaida,0,0);
         painelBot.add(btnGravar,3,0);
 
         painelBot.setHgap(50);
@@ -98,8 +98,8 @@ public class GestaoEntrada implements TelaStrategy {
 
         //estanciar as classes controls
 
-        btnSair.setOnAction((e)->{
-            executarAcoes.executarAcao("Login");
+        btnSaida.setOnAction((e)->{
+            executarAcoes.executarAcao("GestaoSaida");
         });
 
         btnGravar.setOnAction((e)->{

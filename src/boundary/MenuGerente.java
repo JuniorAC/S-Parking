@@ -20,7 +20,7 @@ public class MenuGerente implements TelaStrategy {
         Label titulo = new Label("BEM VINDO: GERENTE");
 
         Button btnVagas = new Button("Vagas");
-        Button btnMensalistas = new Button("Mensalistas");
+        Button btnClientes = new Button("Clientes");
         Button btnEntrada = new Button("Entrada");
         Button btnSaida = new Button("Saida");
         Button btnVoltar = new Button("Voltar");
@@ -31,7 +31,7 @@ public class MenuGerente implements TelaStrategy {
         painelMeio.setVgap(25);
 
         painelMeio.add(btnVagas,1,0);
-        painelMeio.add(btnMensalistas,1,1);
+        painelMeio.add(btnClientes,1,1);
         painelMeio.add(btnEntrada,1,2);
         painelMeio.add(btnSaida,1,3);
 
@@ -58,9 +58,9 @@ public class MenuGerente implements TelaStrategy {
             executarAcoes.executarAcao("GestaoVagas");
         });
 
-        btnMensalistas.setOnAction((e)->{
+        btnClientes.setOnAction((e)->{
             //chamar tela gestao mensalistas
-            System.out.println("função nao implementada");
+            executarAcoes.executarAcao("CadastroCliente");
         });
 
         btnVoltar.setOnAction((e)->{
