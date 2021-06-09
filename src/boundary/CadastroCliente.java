@@ -1,6 +1,7 @@
 package boundary;
 
 import control.ClienteControl;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class CadastroCliente implements TelaStrategy {
 
@@ -50,7 +53,7 @@ public class CadastroCliente implements TelaStrategy {
 
         Button btnSair = new Button("Sair");
         Button btnGravar = new Button("Gravar");
-        Button btnConsultar = new Button("Consultar");
+        Button btnConsultar = new Button("Consultar por Código");
 
         BorderPane painel = new BorderPane();
         GridPane painelTop = new GridPane();
@@ -97,9 +100,13 @@ public class CadastroCliente implements TelaStrategy {
         Insets insets = new Insets(20);
         BorderPane.setMargin(painelMid,insets);
 
-        //adcionar as bindings
 
-        //estanciar as classes controls
+        StringConverter integerToStringConverter = new IntegerStringConverter();
+        Bindings.bindBidirectional(txtNome.textProperty(), clienteControl.nomeProperty());
+        Bindings.bindBidirectional(txtCpf.textProperty(), clienteControl.cpfProperty(), integerToStringConverter);
+        Bindings.bindBidirectional(txtTelefone.textProperty(), clienteControl.telefoneProperty(), integerToStringConverter);
+        Bindings.bindBidirectional(txtEndereco.textProperty(), clienteControl.enderecoProperty());
+        Bindings.bindBidirectional(txtCodigoCliente.textProperty(), clienteControl.codigoClienteProperty(), integerToStringConverter);
 
         btnSair.setOnAction((e)->{
             executarAcoes.executarAcao("Login");
