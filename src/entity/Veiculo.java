@@ -1,17 +1,25 @@
 package entity;
 
 public class Veiculo {
-    private String dono;
+    private int dono;
     private String modelo;
     private String cor;
     private String placa;
-    private boolean avarias;
+    private int avarias;
 
-    public String getDono() {
+    public int getAvarias() {
+        return avarias;
+    }
+
+    public void setAvarias(int avarias) {
+        this.avarias = avarias;
+    }
+
+    public int getDono() {
         return dono;
     }
 
-    public void setDono(String dono) {
+    public void setDono(int dono) {
         this.dono = dono;
     }
 
@@ -39,11 +47,5 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public boolean isAvarias() {
-        return avarias;
-    }
 
-    public void setAvarias(boolean avarias) {
-        this.avarias = avarias;
-    }
 }

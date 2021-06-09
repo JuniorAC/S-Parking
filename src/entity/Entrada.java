@@ -1,12 +1,13 @@
 package entity;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Entrada {
 
     private int codigo;
     private Date dataEntrada;
-    private Date horaEntrada;
+    private Time horaEntrada;
 
     public int getCodigo() {
         return codigo;
@@ -24,11 +25,12 @@ public class Entrada {
         this.dataEntrada = dataEntrada;
     }
 
-    public Date getHoraEntrada() {
+    public Time getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
+    public void setHoraEntrada(Time horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 }
+
