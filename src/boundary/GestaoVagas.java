@@ -5,6 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
@@ -20,7 +21,10 @@ public class GestaoVagas implements TelaStrategy{
     }
 
     @Override
-    public Pane gerarTela() {
+    public BorderPane gerarTela() {
+        BorderPane painel = new BorderPane();
+        Pane formulario = new Pane();
+
 
         VagasControl vagaC = new VagasControl();
 
@@ -34,7 +38,7 @@ public class GestaoVagas implements TelaStrategy{
         Button btnDeletar = new Button("Deletar Vaga");
         Button btnSair = new Button("Sair");
 
-        Pane painel = new Pane();
+
 
         Label lblNumero = new Label("Numero:");
         Label lblPiso = new Label("Piso:");
@@ -75,7 +79,7 @@ public class GestaoVagas implements TelaStrategy{
         btnDeletar.relocate(330,115);
         btnSair.relocate(360,150);
 
-        painel.getChildren().addAll(lblNumero,lblPiso,lblTipoVaga,lblUsuario,lblGestãodeVagas,txtNumero,txtPiso,txtTipoVaga,btnAdicionar,btnAlterar,btnSair,btnDeletar,btnPesquisar);
+        formulario.getChildren().addAll(lblNumero,lblPiso,lblTipoVaga,lblUsuario,lblGestãodeVagas,txtNumero,txtPiso,txtTipoVaga,btnAdicionar,btnAlterar,btnSair,btnDeletar,btnPesquisar);
 
         StringConverter integerToStringConverter = new IntegerStringConverter();
         Bindings.bindBidirectional(txtNumero.textProperty(), vagaC.numeroProperty(), integerToStringConverter);
@@ -89,6 +93,10 @@ public class GestaoVagas implements TelaStrategy{
         btnDeletar.setOnAction((e)->{vagaC.deletarVaga(); });
         btnSair.setOnAction((e)->{
             executarAcoes.executarAcao("Login"); });
+
+        vagaC.generatedTable();
+        painel.setTop(formulario);
+        painel.setCenter(vagaC.getTable());
 
         return painel;
     }
