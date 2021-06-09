@@ -1,37 +1,40 @@
 package boundary;
 
 import control.FuncionariosControl;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-public class CadastroFuncionario extends Application {
-    TextField txtNome = new TextField();
-    TextField txtCPF = new TextField();
-    TextField txtTelefone = new TextField();
-    TextField txtEndereco = new TextField();
-    TextField txtUsuario = new TextField();
-    TextField txtSenha = new TextField();
-    TextField txtCargo = new TextField();
+public class CadastroFuncionario implements TelaStrategy {
 
-    Button btnSalvar = new Button("Salvar");
+    private ExecutarAcoes executor;
+
+    public CadastroFuncionario(ExecutarAcoes executor){
+
+        this.executor = executor;
+    }
+
 
     private FuncionariosControl controlFuncionarios = new FuncionariosControl();
 
-
-
     @Override
-    public void start(Stage stage) throws Exception {
-
+    public Pane gerarTela() {
         GridPane painel = new GridPane();
-        Scene scn = new Scene(painel,230,230);
+
+        TextField txtNome = new TextField();
+        TextField txtCPF = new TextField();
+        TextField txtTelefone = new TextField();
+        TextField txtEndereco = new TextField();
+        TextField txtUsuario = new TextField();
+        TextField txtSenha = new TextField();
+        TextField txtCargo = new TextField();
+
+        Button btnSalvar = new Button("Salvar");
 
         Label lblNome = new Label(" Nome");
         Label lblCPF = new Label(" CPF");
@@ -70,20 +73,12 @@ public class CadastroFuncionario extends Application {
         Bindings.bindBidirectional(txtCargo.textProperty(), controlFuncionarios.cargoProperty());
 
 
-
         btnSalvar.setOnAction((e)-> {
-        controlFuncionarios.salvar();
-
+            controlFuncionarios.salvar();
+            executor.executarAcao("Login");
         });
 
-
-
-        stage.setScene(scn);
-        stage.setTitle("Cadastro funcionario");
-        stage.show();
-
-
+        return painel;
     }
-
 }
 

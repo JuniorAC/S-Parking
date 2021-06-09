@@ -1,38 +1,40 @@
 package boundary;
 
 import control.VagasControl;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 
-public class GestaoVagas extends Application {
+public class GestaoVagas implements TelaStrategy{
 
-    VagasControl vagaC = new VagasControl();
+    private ExecutarAcoes executarAcoes;
 
-    TextField txtNumero = new TextField();
-    TextField txtPiso = new TextField();
-    TextField txtTipoVaga = new TextField();
-
-    Button btnAdicionar = new Button("Adicionar Vaga");
-    Button btnPesquisar = new Button("Pesqusar Vaga");
-    Button btnAlterar = new Button("Alterar Vaga");
-    Button btnDeletar = new Button("Deletar Vaga");
-    Button btnSair = new Button("Sair");
+    public GestaoVagas(ExecutarAcoes executarAcoes) {
+        this.executarAcoes = executarAcoes;
+    }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public Pane gerarTela() {
+
+        VagasControl vagaC = new VagasControl();
+
+        TextField txtNumero = new TextField();
+        TextField txtPiso = new TextField();
+        TextField txtTipoVaga = new TextField();
+
+        Button btnAdicionar = new Button("Adicionar Vaga");
+        Button btnPesquisar = new Button("Pesqusar Vaga");
+        Button btnAlterar = new Button("Alterar Vaga");
+        Button btnDeletar = new Button("Deletar Vaga");
+        Button btnSair = new Button("Sair");
 
         Pane painel = new Pane();
-        Scene scn = new Scene(painel,500,200);
 
         Label lblNumero = new Label("Numero:");
         Label lblPiso = new Label("Piso:");
@@ -85,11 +87,9 @@ public class GestaoVagas extends Application {
         btnPesquisar.setOnAction((e)->{vagaC.pesquisarVaga(); });
         btnAlterar.setOnAction((e)->{vagaC.alterarVaga(); });
         btnDeletar.setOnAction((e)->{vagaC.deletarVaga(); });
-        btnSair.setOnAction((e)->{stage.close(); });
+        btnSair.setOnAction((e)->{
+            executarAcoes.executarAcao("Login"); });
 
-        stage.setScene(scn);
-        stage.setTitle("Gerente - Manter Vagas");
-        stage.show();
-
+        return painel;
     }
 }

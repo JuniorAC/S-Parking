@@ -29,6 +29,7 @@ public class LoginControl {
                 Funcionario f = new Funcionario();
                 f.setUsuario(rs.getString("usuario"));
                 f.setSenha(rs.getString("senha"));
+                f.setCargo(rs.getString("cargo"));
                 lista.add(f);
             }
         } catch (SQLException e){
@@ -37,7 +38,9 @@ public class LoginControl {
         return lista;
     }
 
-    public void loginFuncionario() {
+    public String loginFuncionario() {
+
+        String acao="erro";
 
         if(usuario.get()==null){
             System.out.println("Digite o Usuário");
@@ -49,13 +52,21 @@ public class LoginControl {
                 for (Funcionario f : listaFuncionarios) {
                     if (f.getUsuario().equals(usuario.get()) && f.getSenha().equals(senha.get())) {
                         System.out.println("ok login realizado com sucesso");
-                        //chamar tela;
+
+                        if(f.getCargo().equals("GERENTE")){
+                            acao = "MenuGerente";
+                        } else{
+                            acao = "GestaoEntrada";
+                        }
+
                     } else {
                         System.out.println("senha ou usuário incorreto");
                     }
                 }
             }
         }
+
+        return acao;
     }
 
     public StringProperty usuarioProperty() {

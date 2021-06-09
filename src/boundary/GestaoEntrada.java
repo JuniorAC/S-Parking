@@ -1,56 +1,59 @@
 package boundary;
 
 import control.EntradaControl;
-import control.VeiculoControl;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
-public class GestaoEntrada extends Application {
-    TextField txtCodigo = new TextField();
-    TextField txtDataEntrada = new TextField();
-    TextField txtHoraEntrada = new TextField();
-    TextField txtPlaca = new TextField();
-    TextField txtDono = new TextField();
-    TextField txtModelo = new TextField();
-    TextField txtCor = new TextField();
+public class GestaoEntrada implements TelaStrategy {
 
-    Label entrada = new Label("ENTRADA");
-    Label dadosVeiculo = new Label("DADOS DO VEICULO");
-    Label codigo = new Label("Código:");
-    Label dataEntrada = new Label("Data da Entrada:");
-    Label horaEntrada = new Label("Hora da Entrada:");
+    private ExecutarAcoes executarAcoes;
 
-    Label placa = new Label("Placa:");
-    Label dono = new Label("Dono:");
-    Label modelo = new Label("Modelo:");
-    Label cor = new Label("Cor:");
+    EntradaControl entradaControl = new EntradaControl();
 
-    RadioButton avarias = new RadioButton("Avarias");
+    public GestaoEntrada(ExecutarAcoes executarAcoes) {
 
-    Button btnSair = new Button("Sair");
-    Button btnGravar = new Button("Gravar");
+        this.executarAcoes = executarAcoes;
+    }
 
-    private EntradaControl controlEntrada = new EntradaControl();
-    private VeiculoControl controlVeiculo = new VeiculoControl();
+
 
     @Override
-    public void start(Stage stage) throws Exception {
-
+    public Pane gerarTela() {
         BorderPane painel = new BorderPane();
         GridPane painelTop = new GridPane();
         GridPane painelMid = new GridPane();
         GridPane painelBot = new GridPane();
 
-        Scene scn = new Scene(painel,700,220);
+        TextField txtCodigo = new TextField();
+        TextField txtDataEntrada = new TextField();
+        TextField txtHoraEntrada = new TextField();
+        TextField txtPlaca = new TextField();
+        TextField txtDono = new TextField();
+        TextField txtModelo = new TextField();
+        TextField txtCor = new TextField();
+
+        Label entrada = new Label("ENTRADA");
+        Label dadosVeiculo = new Label("DADOS DO VEICULO");
+        Label codigo = new Label("Código:");
+        Label dataEntrada = new Label("Data da Entrada:");
+        Label horaEntrada = new Label("Hora da Entrada:");
+
+        Label placa = new Label("Placa:");
+        Label dono = new Label("Dono:");
+        Label modelo = new Label("Modelo:");
+        Label cor = new Label("Cor:");
+
+        RadioButton avarias = new RadioButton("Avarias");
+
+        Button btnSair = new Button("Sair");
+        Button btnGravar = new Button("Gravar");
 
 
         painelTop.add(entrada,0,0);
@@ -91,8 +94,19 @@ public class GestaoEntrada extends Application {
         Insets insets = new Insets(20);
         BorderPane.setMargin(painelMid,insets);
 
-        stage.setScene(scn);
-        stage.setTitle("ENTRADAS");
-        stage.show();
+        //adcionar as bindings
+
+        //estanciar as classes controls
+
+        btnSair.setOnAction((e)->{
+            executarAcoes.executarAcao("Login");
+        });
+
+        btnGravar.setOnAction((e)->{
+            entradaControl.gravar();
+            //msg de gravação
+        });
+
+        return painel;
     }
 }

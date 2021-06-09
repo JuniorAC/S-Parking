@@ -1,56 +1,57 @@
 package boundary;
 
 import control.SaidaControl;
-import control.VeiculoControl;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
-public class GestaoSaida extends Application {
-    TextField txtCodigo = new TextField();
-    TextField txtDataSaida = new TextField();
-    TextField txtHoraSaida = new TextField();
-    TextField txtPlaca = new TextField();
-    TextField txtDono = new TextField();
-    TextField txtModelo = new TextField();
-    TextField txtCor = new TextField();
+public class GestaoSaida implements TelaStrategy {
 
-    Label saida = new Label("SAIDA");
-    Label dadosVeiculo = new Label("DADOS DO VEICULO");
-    Label codigo = new Label("Código:");
-    Label dataSaida = new Label("Data da Saida:");
-    Label horaSaida = new Label("Hora da Saida:");
+    private ExecutarAcoes executarAcoes;
 
-    Label placa = new Label("Placa:");
-    Label dono = new Label("Dono:");
-    Label modelo = new Label("Modelo:");
-    Label cor = new Label("Cor:");
+    SaidaControl saidaControl = new SaidaControl();
 
-    RadioButton avarias = new RadioButton("Avarias");
+    public GestaoSaida(ExecutarAcoes executarAcoes) {
+        this.executarAcoes = executarAcoes;
+    }
 
-    Button btnSair = new Button("Sair");
-    Button btnPagamento = new Button("Pagamento");
-
-    private SaidaControl controlSaida = new SaidaControl();
-    private VeiculoControl controlVeiculo = new VeiculoControl();
 
     @Override
-    public void start(Stage stage) throws Exception {
-
+    public Pane gerarTela() {
         BorderPane painel = new BorderPane();
         GridPane painelTop = new GridPane();
         GridPane painelMid = new GridPane();
         GridPane painelBot = new GridPane();
 
-        Scene scn = new Scene(painel,700,220);
+        TextField txtCodigo = new TextField();
+        TextField txtDataSaida = new TextField();
+        TextField txtHoraSaida = new TextField();
+        TextField txtPlaca = new TextField();
+        TextField txtDono = new TextField();
+        TextField txtModelo = new TextField();
+        TextField txtCor = new TextField();
+
+        Label saida = new Label("SAIDA");
+        Label dadosVeiculo = new Label("DADOS DO VEICULO");
+        Label codigo = new Label("Código:");
+        Label dataSaida = new Label("Data da Saida:");
+        Label horaSaida = new Label("Hora da Saida:");
+
+        Label placa = new Label("Placa:");
+        Label dono = new Label("Dono:");
+        Label modelo = new Label("Modelo:");
+        Label cor = new Label("Cor:");
+
+        RadioButton avarias = new RadioButton("Avarias");
+
+        Button btnSair = new Button("Sair");
+        Button btnPagamento = new Button("Pagamento");
 
 
         painelTop.add(saida,0,0);
@@ -91,8 +92,18 @@ public class GestaoSaida extends Application {
         Insets insets = new Insets(20);
         BorderPane.setMargin(painelMid,insets);
 
-        stage.setScene(scn);
-        stage.setTitle("SAIDAS");
-        stage.show();
+        //adcionar as bindings
+
+        //estanciar as classes controls
+
+        btnSair.setOnAction((e)->{
+            executarAcoes.executarAcao("Login");
+        });
+
+        btnPagamento.setOnAction((e) -> {
+            saidaControl.pagamento();
+        });
+
+        return painel;
     }
 }

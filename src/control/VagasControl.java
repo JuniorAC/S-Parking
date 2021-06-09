@@ -16,30 +16,6 @@ public class VagasControl {
     private StringProperty tipoVaga = new SimpleStringProperty();
     private BooleanProperty disponibilidade = new SimpleBooleanProperty(true);
 
-    public int getNumero() {
-        return numero.get();
-    }
-    public IntegerProperty numeroProperty() {
-        return numero;
-    }
-    public int getPiso() {
-        return piso.get();
-    }
-    public IntegerProperty pisoProperty() {
-        return piso;
-    }
-    public String getTipovaga() {
-        return tipoVaga.get();
-    }
-    public StringProperty tipovagaProperty() {
-        return tipoVaga;
-    }
-    public boolean isDisponibilidade() {
-        return disponibilidade.get();
-    }
-    public BooleanProperty disponibilidadeProperty() {
-        return disponibilidade;
-    }
 
     public void setEntity(Vaga v) {
         if (v != null) {
@@ -65,6 +41,7 @@ public class VagasControl {
         listVagas.add(v);
         this.setEntity(new Vaga());
     }
+
     public void pesquisarVaga(){
         for (Vaga v : listVagas) {
             if (v.getNumero() ==(numero.get())) {
@@ -81,6 +58,31 @@ public class VagasControl {
 
     public void deletarVaga(){
         System.out.println("Função ainda não foi implementada");
+    }
+
+    public int getNumero() {
+        return numero.get();
+    }
+    public IntegerProperty numeroProperty() {
+        return numero;
+    }
+    public int getPiso() {
+        return piso.get();
+    }
+    public IntegerProperty pisoProperty() {
+        return piso;
+    }
+    public String getTipovaga() {
+        return tipoVaga.get();
+    }
+    public StringProperty tipovagaProperty() {
+        return tipoVaga;
+    }
+    public boolean isDisponibilidade() {
+        return disponibilidade.get();
+    }
+    public BooleanProperty disponibilidadeProperty() {
+        return disponibilidade;
     }
 
 }

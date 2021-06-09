@@ -1,57 +1,61 @@
 package boundary;
 
 import control.ClienteControl;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
-public class CadastroCliente extends Application {
-    TextField txtNome = new TextField();
-    TextField txtCpf = new TextField();
-    TextField txtTelefone = new TextField();
-    TextField txtEndereco = new TextField();
-    TextField txtCodigoCliente = new TextField();
+public class CadastroCliente implements TelaStrategy {
 
-    TextField txtVencimento = new TextField();
-    TextField txtTipoMens = new TextField();
+    private ExecutarAcoes executarAcoes;
 
-    Label cliente = new Label("CLIENTE");
-    Label nome = new Label("Nome:");
-    Label cpf = new Label("Cpf:");
-    Label telefone = new Label("Telefone:");
-    Label endereco = new Label("Endereço:");
-    Label codCliente = new Label("Código Cliente:");
-    Label mensalista = new Label("MENSALISTA");
+    ClienteControl clienteControl= new ClienteControl();
 
-    Label vencimento = new Label("Data Vencimento:");
-    Label tipoMensalidade = new Label("Tipo Mensalidade:");
+    public CadastroCliente(ExecutarAcoes executarAcoes) {
 
-    RadioButton mensalistaRadio = new RadioButton("Mensalista");
+        this.executarAcoes = executarAcoes;
+    }
 
-    Button btnSair = new Button("Sair");
-    Button btnGravar = new Button("Gravar");
-    Button btnConsultar = new Button("Consultar");
-
-    private ClienteControl controlCliente = new ClienteControl();
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public Pane gerarTela() {
+
+        TextField txtNome = new TextField();
+        TextField txtCpf = new TextField();
+        TextField txtTelefone = new TextField();
+        TextField txtEndereco = new TextField();
+        TextField txtCodigoCliente = new TextField();
+
+        TextField txtVencimento = new TextField();
+        TextField txtTipoMens = new TextField();
+
+        Label cliente = new Label("CLIENTE");
+        Label nome = new Label("Nome:");
+        Label cpf = new Label("Cpf:");
+        Label telefone = new Label("Telefone:");
+        Label endereco = new Label("Endereço:");
+        Label codCliente = new Label("Código Cliente:");
+        Label mensalista = new Label("MENSALISTA");
+
+        Label vencimento = new Label("Data Vencimento:");
+        Label tipoMensalidade = new Label("Tipo Mensalidade:");
+
+        RadioButton mensalistaRadio = new RadioButton("Mensalista");
+
+        Button btnSair = new Button("Sair");
+        Button btnGravar = new Button("Gravar");
+        Button btnConsultar = new Button("Consultar");
 
         BorderPane painel = new BorderPane();
         GridPane painelTop = new GridPane();
         GridPane painelMid = new GridPane();
         GridPane painelBot = new GridPane();
-
-        Scene scn = new Scene(painel,740,200);
-
 
         painelTop.add(cliente,0,0);
         painelTop.add(nome,1,1);
@@ -93,8 +97,22 @@ public class CadastroCliente extends Application {
         Insets insets = new Insets(20);
         BorderPane.setMargin(painelMid,insets);
 
-        stage.setScene(scn);
-        stage.setTitle("Cadastro Cliente");
-        stage.show();
+        //adcionar as bindings
+
+        //estanciar as classes controls
+
+        btnSair.setOnAction((e)->{
+            executarAcoes.executarAcao("Login");
+        });
+
+        btnConsultar.setOnAction((e)->{
+            clienteControl.pesquisar();
+        });
+
+        btnGravar.setOnAction((e)->{
+            clienteControl.gravar();
+        });
+
+        return painel;
     }
 }
