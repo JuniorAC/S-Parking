@@ -32,7 +32,7 @@ public class EntradaControl {
             stmt.setString(2,placa.get());
             stmt.setDate(3, Date.valueOf(((dataEntrada.get()))));
             stmt.setTime(4, Time.valueOf(horaEntrada.get()));
-            int i = stmt.executeUpdate();
+            stmt.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -43,26 +43,14 @@ public class EntradaControl {
     }
 
 
-    public int getCodigo() {
-        return codigo.get();
-    }
     public IntegerProperty codigoProperty() {
         return codigo;
-    }
-    public LocalDate getDataEntrada() {
-        return dataEntrada.get();
     }
     public ObjectProperty<LocalDate> dataEntradaProperty() {
         return dataEntrada;
     }
-    public LocalTime getHoraEntrada() {
-        return horaEntrada.get();
-    }
     public ObjectProperty<LocalTime> horaEntradaProperty() {
         return horaEntrada;
-    }
-    public String getPlaca() {
-        return placa.get();
     }
 
 }

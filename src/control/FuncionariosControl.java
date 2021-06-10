@@ -79,56 +79,28 @@ public class FuncionariosControl {
         }
     }
 
-    public String getNome() {
-        return nome.get();
-    }
-
     public StringProperty nomeProperty() {
         return nome;
-    }
-
-    public int getCpf() {
-        return cpf.get();
     }
 
     public IntegerProperty cpfProperty() {
         return cpf;
     }
 
-    public int getTelefone() {
-        return telefone.get();
-    }
-
     public IntegerProperty telefoneProperty() {
         return telefone;
-    }
-
-    public String getEndereco() {
-        return endereco.get();
     }
 
     public StringProperty enderecoProperty() {
         return endereco;
     }
 
-    public String getUsuario() {
-        return usuario.get();
-    }
-
     public StringProperty usuarioProperty() {
         return usuario;
     }
 
-    public String getSenha() {
-        return senha.get();
-    }
-
     public StringProperty senhaProperty() {
         return senha;
-    }
-
-    public String getCargo() {
-        return cargo.get();
     }
 
     public StringProperty cargoProperty() {

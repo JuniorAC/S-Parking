@@ -143,7 +143,7 @@ public class Pagamento implements TelaStrategy{
 
         btnPagar.setOnAction((e)->{
             System.out.println("Pagamento realizado");
-            //executarAcoes.executarAcao("Login");
+            executarAcoes.executarAcao("Login");
         });
 
         return painel;

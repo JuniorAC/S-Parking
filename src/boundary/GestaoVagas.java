@@ -45,11 +45,11 @@ public class GestaoVagas implements TelaStrategy{
         Label lblTipoVaga = new Label("Tipo de Vaga:");
 
         Label lblUsuario = new Label("Bem vindo: Usuario ");
-        Label lblGestãodeVagas = new Label("Gestão de Vagas ");
+        Label lblGestaodeVagas = new Label("Gestão de Vagas ");
 
 
         lblUsuario.setFont(new Font("Arial", 18));
-        lblGestãodeVagas.setFont(new Font("Arial", 15));
+        lblGestaodeVagas.setFont(new Font("Arial", 15));
 
         txtNumero.setMaxSize(80,1);
         txtPiso.setMaxSize(80,1);
@@ -63,7 +63,7 @@ public class GestaoVagas implements TelaStrategy{
 
 
         lblUsuario.relocate(150,10);
-        lblGestãodeVagas.relocate(10,40);
+        lblGestaodeVagas.relocate(10,40);
 
         lblNumero.relocate(15,60);
         lblPiso.relocate(120,60);
@@ -79,7 +79,7 @@ public class GestaoVagas implements TelaStrategy{
         btnDeletar.relocate(330,115);
         btnSair.relocate(360,150);
 
-        formulario.getChildren().addAll(lblNumero,lblPiso,lblTipoVaga,lblUsuario,lblGestãodeVagas,txtNumero,txtPiso,txtTipoVaga,btnAdicionar,btnAlterar,btnSair,btnDeletar,btnPesquisar);
+        formulario.getChildren().addAll(lblNumero,lblPiso,lblTipoVaga,lblUsuario,lblGestaodeVagas,txtNumero,txtPiso,txtTipoVaga,btnAdicionar,btnAlterar,btnSair,btnDeletar,btnPesquisar);
 
         StringConverter integerToStringConverter = new IntegerStringConverter();
         Bindings.bindBidirectional(txtNumero.textProperty(), vagaC.numeroProperty(), integerToStringConverter);

@@ -97,7 +97,7 @@ public class TelaPrincipal extends Application
     public void handle(ActionEvent event) {
         EventTarget target = event.getTarget();
         if (target instanceof MenuItem){
-            if(((MenuItem) target).getText() =="Troca Usuário"){
+            if(((MenuItem) target).getText().equals("Troca Usuário")){
                 bp.setCenter(login.gerarTela());
             }else{
                 Platform.exit();

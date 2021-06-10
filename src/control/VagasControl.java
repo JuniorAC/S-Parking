@@ -11,8 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class VagasControl {
@@ -36,7 +34,6 @@ public class VagasControl {
            piso.set(v.getPiso());
            tipoVaga.set(v.getTipoVaga());
            disponibilidade.set(v.getDisponibilidade());
-          ;
         }
     }
 
@@ -52,14 +49,14 @@ public class VagasControl {
     public void adicionarvaga(){
 
         try (Connection con = DriverManager.getConnection(URL,USER,PASSWORD)){
-            String sql = String.format("INSERT INTO VAGA (NUMERO, PISO, TIPOVAGA, DISPONIBILIDADE) VALUES (?, ?, ?, ?);");
+            String sql =("INSERT INTO VAGA (NUMERO, PISO, TIPOVAGA, DISPONIBILIDADE) VALUES (?, ?, ?, ?);");
             System.out.println("Sql ==> " + sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,numero.get());
             stmt.setInt(2, piso.get());
             stmt.setString(3,tipoVaga.get());
             stmt.setInt(4,disponibilidade.get());
-            int i = stmt.executeUpdate();
+            stmt.executeUpdate();
             organizaTable();
             System.out.println("Vaga Adicionada");
         } catch (SQLException e){
@@ -88,7 +85,7 @@ public class VagasControl {
                 this.setEntity(v);
                 organizaTable();
             }
-            int i = stmt.executeUpdate();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,14 +93,14 @@ public class VagasControl {
 
     public void alterarVaga(){
         try (Connection con = DriverManager.getConnection(URL,USER,PASSWORD)){
-            String sql = String.format("UPDATE VAGA SET PISO= ?, TIPOVAGA=?, DISPONIBILIDADE=? WHERE numero = ?;");
+            String sql = ("UPDATE VAGA SET PISO= ?, TIPOVAGA=?, DISPONIBILIDADE=? WHERE numero = ?;");
             System.out.println("Sql ==> " + sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(4,numero.get());
             stmt.setInt(1, piso.get());
             stmt.setString(2,tipoVaga.get());
             stmt.setInt(3,disponibilidade.get());
-            int i = stmt.executeUpdate();
+            stmt.executeUpdate();
             organizaTable();
             System.out.println("Realizado alteração na vaga");
         } catch (SQLException e){
@@ -121,11 +118,11 @@ public class VagasControl {
     public void deletarVaga(){
 
         try (Connection con = DriverManager.getConnection(URL,USER,PASSWORD)){
-            String sql = String.format("DELETE FROM VAGA WHERE numero = ?;");
+            String sql = ("DELETE FROM VAGA WHERE numero = ?;");
             System.out.println("Sql ==> " + sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,numero.get());
-            int i = stmt.executeUpdate();
+            stmt.executeUpdate();
             organizaTable();
             System.out.println("Vaga deletada");
         } catch (SQLException e){
@@ -143,14 +140,14 @@ public class VagasControl {
     public void generatedTable(){
         organizaTable();
     TableColumn<Vaga, Integer> colNumero = new TableColumn<>("Numero");
-    colNumero.setCellValueFactory(new PropertyValueFactory<Vaga,Integer>("Numero"));
+    colNumero.setCellValueFactory(new PropertyValueFactory<>("Numero"));
 
     TableColumn<Vaga, Integer> colPiso = new TableColumn<>("Piso");
-    colPiso.setCellValueFactory(new PropertyValueFactory<Vaga,Integer>("Piso"));
+    colPiso.setCellValueFactory(new PropertyValueFactory<>("Piso"));
     TableColumn<Vaga, String> coltipovaga = new TableColumn<>("Tipo de Vaga");
-    coltipovaga.setCellValueFactory(new PropertyValueFactory<Vaga,String>("TipoVaga"));
+    coltipovaga.setCellValueFactory(new PropertyValueFactory<>("TipoVaga"));
     TableColumn<Vaga, Integer> colDisponibilidade = new TableColumn<>("Disponibilidade");
-    colDisponibilidade.setCellValueFactory(new PropertyValueFactory<Vaga,Integer>("disponibilidade"));
+    colDisponibilidade.setCellValueFactory(new PropertyValueFactory<>("disponibilidade"));
 
     table.getColumns().addAll(colNumero,colPiso,coltipovaga,colDisponibilidade);
 
@@ -179,35 +176,16 @@ public class VagasControl {
     }
 
 
-
-    public int getNumero() {
-        return numero.get();
-    }
     public IntegerProperty numeroProperty() {
         return numero;
     }
-    public int getPiso() {
-        return piso.get();
-    }
+
     public IntegerProperty pisoProperty() {
         return piso;
     }
-    public String getTipovaga() {
-        return tipoVaga.get();
-    }
+
     public StringProperty tipovagaProperty() {
         return tipoVaga;
     }
 
-    public int getDisponibilidade() {
-        return disponibilidade.get();
-    }
-
-    public IntegerProperty disponibilidadeProperty() {
-        return disponibilidade;
-    }
-
-    public void setDisponibilidade(int disponibilidade) {
-        this.disponibilidade.set(disponibilidade);
-    }
 }
