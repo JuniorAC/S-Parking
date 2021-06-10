@@ -59,7 +59,7 @@ public class GestaoEntrada implements TelaStrategy {
 
         RadioButton avarias = new RadioButton("Avarias");
 
-        Button btnSaida = new Button("Registrar Saida:");
+        Button btnSaida = new Button("Registrar Saida");
         Button btnGravar = new Button("Gravar");
 
 
@@ -126,7 +126,6 @@ public class GestaoEntrada implements TelaStrategy {
         btnGravar.setOnAction((e)->{
             veiculoControl.gravar();
             entradaControl.gravar();
-
             //msg de gravação
         });
 

@@ -1,6 +1,7 @@
 package boundary;
 
 import control.SaidaControl;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,6 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
+import javafx.util.converter.LocalTimeStringConverter;
 
 public class GestaoSaida implements TelaStrategy {
 
@@ -33,20 +38,14 @@ public class GestaoSaida implements TelaStrategy {
         TextField txtDataSaida = new TextField();
         TextField txtHoraSaida = new TextField();
         TextField txtPlaca = new TextField();
-        TextField txtDono = new TextField();
-        TextField txtModelo = new TextField();
-        TextField txtCor = new TextField();
+
 
         Label saida = new Label("SAIDA");
-        Label dadosVeiculo = new Label("DADOS DO VEICULO");
         Label codigo = new Label("Código:");
         Label dataSaida = new Label("Data da Saida:");
         Label horaSaida = new Label("Hora da Saida:");
 
         Label placa = new Label("Placa:");
-        Label dono = new Label("Dono:");
-        Label modelo = new Label("Modelo:");
-        Label cor = new Label("Cor:");
 
         RadioButton avarias = new RadioButton("Avarias");
 
@@ -66,16 +65,9 @@ public class GestaoSaida implements TelaStrategy {
 
         painel.setTop(painelTop);
 
-        painelMid.add(dadosVeiculo,0,1);
         painelMid.add(placa,1,2);
         painelMid.add(txtPlaca,2,2);
-        painelMid.add(dono,1,3);
-        painelMid.add(txtDono,1,4);
-        painelMid.add(modelo,2,3);
-        painelMid.add(txtModelo,2,4);
-        painelMid.add(cor,3,3);
-        painelMid.add(txtCor,3,4);
-        painelMid.add(avarias,4,4);
+        painelMid.add(avarias,5,2);
 
         painelMid.setHgap(5);
 
@@ -92,16 +84,24 @@ public class GestaoSaida implements TelaStrategy {
         Insets insets = new Insets(20);
         BorderPane.setMargin(painelMid,insets);
 
-        //adcionar as bindings
 
-        //estanciar as classes controls
+        StringConverter integerToStringConverter = new IntegerStringConverter();
+        StringConverter LocalDateToStringConverter = new LocalDateStringConverter();
+        StringConverter LocalTimeToStringConverter = new LocalTimeStringConverter();
+
+        Bindings.bindBidirectional(txtCodigo.textProperty(), saidaControl.codigoProperty(),integerToStringConverter);
+        Bindings.bindBidirectional(txtPlaca.textProperty(), saidaControl.placaProperty());
+        Bindings.bindBidirectional(txtDataSaida.textProperty(), saidaControl.dataSaidaProperty(), LocalDateToStringConverter);
+        Bindings.bindBidirectional(txtHoraSaida.textProperty(), saidaControl.horaSaidaProperty(), LocalTimeToStringConverter);
+
 
         btnSair.setOnAction((e)->{
             executarAcoes.executarAcao("Login");
         });
 
         btnPagamento.setOnAction((e) -> {
-            saidaControl.pagamento();
+            saidaControl.gravarSaida();
+            executarAcoes.executarAcao("Pagamento");
         });
 
         return painel;

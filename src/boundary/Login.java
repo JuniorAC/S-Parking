@@ -31,15 +31,15 @@ public class Login implements TelaStrategy {
         Pane painel = new Pane();
 
         Label lblUsusario = new Label("Usuário");
-        lblUsusario.relocate(60, 40);
+        lblUsusario.relocate(300, 40);
         Label lblSenha = new Label("Senha");
-        lblSenha.relocate(60, 90);
+        lblSenha.relocate(300, 90);
 
-        txtUsuario.relocate(50, 60);
-        txtSenha.relocate(50, 110);
+        txtUsuario.relocate(300, 60);
+        txtSenha.relocate(300, 110);
 
-        btnEntrar.relocate(90, 160);
-        btnCadastrar.relocate(80, 200);
+        btnEntrar.relocate(350, 160);
+        btnCadastrar.relocate(340, 200);
 
         painel.getChildren().addAll(lblUsusario, lblSenha, txtUsuario, txtSenha, btnEntrar, btnCadastrar);
 

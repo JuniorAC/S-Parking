@@ -28,7 +28,7 @@ public class TelaPrincipal extends Application
     private TelaStrategy gestaoVagas = new GestaoVagas(this);
     private TelaStrategy login = new Login(this);
     private TelaStrategy menuGerente = new MenuGerente(this);
-
+    private TelaStrategy pagamento = new Pagamento(this);
 
 
     private BorderPane bp = new BorderPane();
@@ -45,6 +45,7 @@ public class TelaPrincipal extends Application
         mapaTela.put("GestaoVagas",gestaoVagas);
         mapaTela.put("Login",login);
         mapaTela.put("MenuGerente",menuGerente);
+        mapaTela.put("Pagamento", pagamento);
     }
 
 

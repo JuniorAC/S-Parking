@@ -33,7 +33,7 @@ public class GestaoVagas implements TelaStrategy{
         TextField txtTipoVaga = new TextField();
 
         Button btnAdicionar = new Button("Adicionar Vaga");
-        Button btnPesquisar = new Button("Pesqusar Vaga");
+        Button btnPesquisar = new Button("Pesquisar Vaga");
         Button btnAlterar = new Button("Alterar Vaga");
         Button btnDeletar = new Button("Deletar Vaga");
         Button btnSair = new Button("Sair");
